@@ -27,7 +27,7 @@ namespace NTierSolution.MVC.UI.Controllers
             return View();
         }
 
-        [HttpPost]
+ 
         public IActionResult StudentList()
         {
             var students = _businessLogic.GetStudentsList();
@@ -60,7 +60,7 @@ namespace NTierSolution.MVC.UI.Controllers
             return _businessLogic.GetStudentsList();
 
         }
-        [HttpPost]
+     
         public IActionResult UpdateStudent(int id, StudentsModel viewModel)
         {
             _businessLogic.UpdateStudent(id);
