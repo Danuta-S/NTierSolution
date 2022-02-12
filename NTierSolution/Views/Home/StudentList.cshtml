@@ -1,0 +1,49 @@
+﻿@model NTierSolution.MVC.UI.StudentsModel
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<h2>List of the Students</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => student.Id)</td>
+                <td>@Html.DisplayFor(modelItem => student.Name)</td>
+                <td>@Html.DisplayFor(modelItem => student.Surname)</td>
+                <td><a class="btn btn-success" asp-action="Edit" asp-route-id="@student.Id">Update</a></td>
+                <td><a class="btn btn-outline-danger" asp-action="DeleteComponent" asp-route-id="@student.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("ModifyViewData",
+"Form", FormMethod.Post))
+{
+    <div class="mt-4 p-5 bg-light text-dark">
+        <div class="form-group row">
+            <label asp-for="Name" class="col-md-2 col-form-label">Name:</label>
+            <div class="col-sm-10">
+                <input asp-for="Name" type="text" class="input-group" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Surname" class="col-md-2 col-form-label">Surname:</label>
+            <div class="col-sm-10">
+                <input asp-for="Surname" type="text" class="input-group">
+            </div>
+        </div>
+    </div>
+    <button id="SaveButtonId" type="submit" class="btn btn-success">Save</button>
+}
