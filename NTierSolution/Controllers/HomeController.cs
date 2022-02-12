@@ -2,6 +2,7 @@
 using NtierSolution.BLL;
 using NTierSolution.Entity;
 using NTierSolution.Models;
+using NTierSolution.MVC.UI.Models;
 using System.Diagnostics;
 
 namespace NTierSolution.MVC.UI.Controllers

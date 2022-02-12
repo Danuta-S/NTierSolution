@@ -1,5 +1,4 @@
-﻿@using NTierSolution.Entity
-@model StudentsModel
+﻿@model NTierSolution.MVC.UI.Models.StudentsModel
 @{
     ViewData["Title"] = "Student List";
 }
@@ -14,23 +13,24 @@
             <th>Surname</th>
         </tr>
     </thead>
-
-    <tbody>
-        @foreach (var student in Model.Students)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => student.Id)</td>
-                <td>@Html.DisplayFor(modelItem => student.Name)</td>
-                <td>@Html.DisplayFor(modelItem => student.Surname)</td>
-                <td><a class="btn btn-success" asp-action="Edit" asp-route-id="@student.Id">Update</a></td>
-                <td><a class="btn btn-outline-danger" asp-action="DeleteComponent" asp-route-id="@student.Id">Delete</a></td>
-            </tr>
-        }
-    </tbody>
+    @if (Model.Students != null)
+    {
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => student.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => student.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => student.Surname)</td>
+                    <td><a class="btn btn-success" asp-action="Edit" asp-route-id="@student.Id">Update</a></td>
+                    <td><a class="btn btn-outline-danger" asp-action="DeleteComponent" asp-route-id="@student.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    }
 </table>
 
-@using (Html.BeginForm("ModifyViewData",
-"Form", FormMethod.Post))
+@using (Html.BeginForm("ModifyViewData", "Home", FormMethod.Post))
 {
     <div class="mt-4 p-5 bg-light text-dark">
         <div class="form-group row">
@@ -46,5 +46,5 @@
             </div>
         </div>
     </div>
-    <button id="SaveButtonId" type="submit" class="btn btn-success">Save</button>
+    <button id="SaveButtonId" type="submit" class="btn btn-success">Add</button>
 }
