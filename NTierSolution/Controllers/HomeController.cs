@@ -67,6 +67,25 @@ namespace NTierSolution.MVC.UI.Controllers
             return RedirectToAction("StudentList");
         }
 
+        [HttpPost]
+        public JsonResult ModifyViewData(StudentsModel dataModel)
+        {
+            try
+            {
+                var model = new StudentsModel()
+                {
+                    Name = dataModel.Name,
+                    Surname = dataModel.Surname
+                };
+
+                return Json(new { model, status = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = "Fail", exceptionMessage = ex.Message });
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
