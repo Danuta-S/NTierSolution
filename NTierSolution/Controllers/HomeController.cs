@@ -28,14 +28,62 @@ namespace NTierSolution.MVC.UI.Controllers
             return View();
         }
 
- 
-        public IActionResult StudentList()
+        //public IActionResult OnPost()
+        //{
+        //    if (!(students is null || !ModelState.IsValid))
+        //    {
+        //        db.Students.Add(Students);
+        //        db.SaveChanges();
+        //        return RedirectToPage("/StudentList");
+        //    }
+        //    else
+        //    {
+        //        return StudentList(); // return to original page
+        //    }
+        //}
+        //[HttpPost]
+
+        public List<Students> GetListOfStudents()
         {
-            var students = _businessLogic.GetStudentsList();
-            var viewModel = new StudentsModel();
-            return View(viewModel);
+            return _businessLogic.GetStudentsList();
+
         }
 
+        public IActionResult StudentList()
+        {
+            IList<Students> studentList = new List<Students>();
+            studentList.Add(new Students() { Name = "Bill" });
+            studentList.Add(new Students() { Name = "Steve" });
+            studentList.Add(new Students() { Name = "Ram" });
+
+            ViewData["StudentList"] = studentList;
+            //var students = _businessLogic.GetStudentsList();
+            return View();
+        }
+
+        //[HttpGet]
+        //public IActionResult ModifyViewData(StudentsModel viewModel)
+        //{
+        //    var students = viewModel.Students;
+        //    _businessLogic.AddStudents(student);
+        //    return RedirectToAction("StudentList");
+        //}
+
+        //public IActionResult StudentList()
+        //{
+        //    var students = _businessLogic.GetStudentsList();
+        //    var model = new StudentsModel();
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public IActionResult StudentList(UI.Models.StudentsModel viewModel)
+        //{
+        //    IEnumerable<NTierSolution.Entity.Students> students;
+        //    return View(viewModel);
+        //}
+
+        [HttpPost]
         public IActionResult AddStudent()
         {
             var student = new Students()
@@ -55,38 +103,13 @@ namespace NTierSolution.MVC.UI.Controllers
             _businessLogic.DeleteStudent(id);
             return RedirectToAction("StudentList");
         }
-
-        public List<Students> GetListOfStudents()
-        {
-            return _businessLogic.GetStudentsList();
-
-        }
      
         public IActionResult UpdateStudent(int id, StudentsModel viewModel)
         {
             _businessLogic.UpdateStudent(id);
             return RedirectToAction("StudentList");
         }
-
-        [HttpPost]
-        public JsonResult ModifyViewData(StudentsModel dataModel)
-        {
-            try
-            {
-                var model = new StudentsModel()
-                {
-                    Name = dataModel.Name,
-                    Surname = dataModel.Surname
-                };
-
-                return Json(new { model, status = "Success" });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { status = "Fail", exceptionMessage = ex.Message });
-            }
-        }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

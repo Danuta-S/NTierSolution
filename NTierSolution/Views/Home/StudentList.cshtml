@@ -1,20 +1,40 @@
 ﻿@model NTierSolution.MVC.UI.Models.StudentsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Student List";
 }
 
-<h2>List of the Students</h2>
+@using (Html.BeginForm("ModifyViewData", "Home", FormMethod.Post))
+{
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Surname</th>
-        </tr>
-    </thead>
-    @if (Model.Students != null)
-    {
+    <div class="row">
+        <p>Enter details for a new student:</p>
+        <div>
+            <label asp-for="Name" class="col-md-2 col-form-label">Name:</label>
+            <input asp-for="Name"
+               placeholder="Name" required />
+        </div>
+        <div>
+            <label asp-for="Surname" class="col-md-2 col-form-label">Surname:</label>
+            <input asp-for="Surname"
+               placeholder="Surname" required />
+        </div>
+    </div>
+    <button id="SaveButtonId" type="submit" class="btn btn-success">Add</button>
+}
+</br>
+
+<h2>List of the Students</h2>
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
         <tbody>
             @foreach (var student in Model.Students)
             {
@@ -27,24 +47,5 @@
                 </tr>
             }
         </tbody>
-    }
-</table> 
-
-@using (Html.BeginForm("ModifyViewData", "Home", FormMethod.Post))
-{
-    <div class="mt-4 p-5 bg-light text-dark">
-        <div class="form-group row">
-            <label asp-for="Name" class="col-md-2 col-form-label">Name:</label>
-            <div class="col-sm-10">
-                <input asp-for="Name" type="text" class="input-group" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label asp-for="Surname" class="col-md-2 col-form-label">Surname:</label>
-            <div class="col-sm-10">
-                <input asp-for="Surname" type="text" class="input-group">
-            </div>
-        </div>
-    </div>
-    <button id="SaveButtonId" type="submit" class="btn btn-success">Add</button>
+    </table>
 }
