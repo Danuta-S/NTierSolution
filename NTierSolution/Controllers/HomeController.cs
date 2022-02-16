@@ -72,8 +72,8 @@ namespace NTierSolution.MVC.UI.Controllers
         //    return View(viewModel);
         //}
 
-        [HttpPost]
-        public IActionResult AddStudent(StudentsModel studentsModel)
+        
+        public void AddStudent(StudentsModel studentsModel)
         {
             var student = new Students()
             {
@@ -83,7 +83,7 @@ namespace NTierSolution.MVC.UI.Controllers
             };
 
             _businessLogic.AddStudents(student);
-            return View(studentsModel);
+            //return View(studentsModel);
         }
 
         public IActionResult DeleteStudent(int id)
