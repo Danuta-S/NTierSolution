@@ -91,18 +91,17 @@ namespace NTierSolution.MVC.UI.Controllers
             _businessLogic.DeleteStudent(id);
             return RedirectToAction("StudentList");
         }
-
-        [HttpPost]
+        
         public IActionResult UpdateStudent(int id, StudentsModel viewModel)
         {
             var student = new Students
             {
-                Id = id,
+                Id = viewModel.Id,
                 Name = viewModel.Name,
                 Surname = viewModel.Surname
             };
             _businessLogic.UpdateStudent(student);
-            return RedirectToPage("UpdateStudent");
+            return View(viewModel);
         }
 
         public void SubmitUpdateStudent(StudentsModel viewModel)
