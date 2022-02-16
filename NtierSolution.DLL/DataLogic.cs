@@ -56,9 +56,9 @@ namespace NtierSolution.DLL
             _dbConnection.Query(query);
         }
 
-        public void UpdateStudent(int id)
+        public void UpdateStudent(Students student)
         {
-            var updateQuery = $@"UPDATE Students SET Name = 'Bill', Surname = 'Gates' WHERE Id ={id}";
+            var updateQuery = $@"UPDATE Students SET Name = '{student.Name}', Surname = '{student.Surname}' WHERE Id = {student.Id}";
             _dbConnection.Query(updateQuery);
         }
 

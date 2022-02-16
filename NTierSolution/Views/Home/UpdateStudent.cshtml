@@ -1,4 +1,5 @@
-﻿@model NTierSolution.MVC.UI.Models.StudentsModel
+﻿@using NTierSolution.MVC.UI.Models
+@model StudentsModel
 @{
     ViewData["Title"] = "Student Update Form";
 }
@@ -7,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update">
+        <form asp-action="Update" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -21,12 +22,12 @@
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="UpdateStudent" asp-route-id="model.Id">Update</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="ComponentList">Back to List</a>
+    <a asp-action="StudentList">Back to Student List</a>
 </div>

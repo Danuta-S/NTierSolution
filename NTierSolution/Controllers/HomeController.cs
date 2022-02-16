@@ -28,37 +28,26 @@ namespace NTierSolution.MVC.UI.Controllers
             return View();
         }
 
-        //public IActionResult OnPost()
-        //{
-        //    if (!(students is null || !ModelState.IsValid))
-        //    {
-        //        db.Students.Add(Students);
-        //        db.SaveChanges();
-        //        return RedirectToPage("/StudentList");
-        //    }
-        //    else
-        //    {
-        //        return StudentList(); // return to original page
-        //    }
-        //}
-        //[HttpPost]
-
         public List<Students> GetListOfStudents()
         {
             return _businessLogic.GetStudentsList();
-
         }
 
         public IActionResult StudentList()
         {
             IList<Students> studentList = new List<Students>();
-            studentList.Add(new Students() { Name = "Bill" });
-            studentList.Add(new Students() { Name = "Steve" });
-            studentList.Add(new Students() { Name = "Ram" });
-
             ViewData["StudentList"] = studentList;
-            //var students = _businessLogic.GetStudentsList();
-            return View();
+            var students = _businessLogic.GetStudentsList();
+            var modelList = new List<StudentsModel>();
+            foreach (var student in students)
+            {
+                var modelStudent = new StudentsModel();
+                modelStudent.Id = student.Id;
+                modelStudent.Name = student.Name;
+                modelStudent.Surname = student.Surname;
+                modelList.Add(modelStudent);
+            }
+            return View(modelList);
         }
 
         //[HttpGet]
@@ -84,18 +73,17 @@ namespace NTierSolution.MVC.UI.Controllers
         //}
 
         [HttpPost]
-        public IActionResult AddStudent()
+        public IActionResult AddStudent(StudentsModel studentsModel)
         {
             var student = new Students()
             {
-                Id = 1,
-                Name = "John",
-                Surname = "Doe"
+                Id = studentsModel.Id,
+                Name = studentsModel.Name,
+                Surname = studentsModel.Surname
             };
 
             _businessLogic.AddStudents(student);
-            var viewModel = new StudentsModel();
-            return View(viewModel);
+            return View(studentsModel);
         }
 
         public IActionResult DeleteStudent(int id)
@@ -103,13 +91,29 @@ namespace NTierSolution.MVC.UI.Controllers
             _businessLogic.DeleteStudent(id);
             return RedirectToAction("StudentList");
         }
-     
+
+        [HttpPost]
         public IActionResult UpdateStudent(int id, StudentsModel viewModel)
         {
-            _businessLogic.UpdateStudent(id);
-            return RedirectToAction("StudentList");
+            var student = new Students
+            {
+                Id = id,
+                Name = viewModel.Name,
+                Surname = viewModel.Surname
+            };
+            _businessLogic.UpdateStudent(student);
+            return RedirectToPage("UpdateStudent");
         }
-        
+
+        public void SubmitUpdateStudent(StudentsModel viewModel)
+        {
+            var student = new Students();
+            student.Id = viewModel.Id;
+            student.Name = viewModel.Name;
+            student.Surname = viewModel.Surname;
+            _businessLogic.UpdateStudent(student);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

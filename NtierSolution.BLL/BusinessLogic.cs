@@ -39,11 +39,11 @@ namespace NtierSolution.BLL
             _dataLogic.AddStudent(student);
         }
 
-        public void UpdateStudent(int id)
+        public void UpdateStudent(Students student)
         {
             //if (student != null)
             //    return;
-            _dataLogic.UpdateStudent(id);
+            _dataLogic.UpdateStudent(student);
         }
 
         public void DeleteStudent(int id)

@@ -1,0 +1,20 @@
+﻿@using NTierSolution.MVC.UI.Models
+@model StudentsModel
+@using (Html.BeginForm("AddStudent", "Home", FormMethod.Post))
+{
+
+    <div class="row">
+        <p>Enter details for a new student:</p>
+        <div>
+            <label asp-for="Name" class="col-md-2 col-form-label">Name:</label>
+            <input asp-for="Name"
+               placeholder="Name" required />
+        </div>
+        <div>
+            <label asp-for="Surname" class="col-md-2 col-form-label">Surname:</label>
+            <input asp-for="Surname"
+               placeholder="Surname" required />
+        </div>
+    </div>
+    <button id="SaveButtonId" type="submit" class="btn btn-success">Add</button>
+}
