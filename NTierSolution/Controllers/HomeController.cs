@@ -83,7 +83,7 @@ namespace NTierSolution.MVC.UI.Controllers
             };
 
             _businessLogic.AddStudents(student);
-            return View(studentsModel);
+            return RedirectToAction("StudentList");
         }
 
         public IActionResult DeleteStudent(int id)
