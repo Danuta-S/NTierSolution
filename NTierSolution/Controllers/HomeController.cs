@@ -72,7 +72,7 @@ namespace NTierSolution.MVC.UI.Controllers
         //    return View(viewModel);
         //}
 
-        [HttpPost]
+        
         public IActionResult AddStudent(StudentsModel studentsModel)
         {
             var student = new Students()

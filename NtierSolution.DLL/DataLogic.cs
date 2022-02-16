@@ -51,8 +51,8 @@ namespace NtierSolution.DLL
 
         public void AddStudent(Students student)
         {
-            var query = @"Insert Into Students (Name, Surname) 
-                        Values('Steve', 'Jobs')";
+            var query = $@"Insert Into Students  
+                        Values('{student.Name}', '{student.Surname}')";
             _dbConnection.Query(query);
         }
 
