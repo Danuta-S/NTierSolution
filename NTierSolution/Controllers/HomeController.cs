@@ -32,7 +32,7 @@ namespace NTierSolution.MVC.UI.Controllers
         {
             return _businessLogic.GetStudentsList();
         }
-
+        
         public IActionResult StudentList()
         {
             IList<Students> studentList = new List<Students>();

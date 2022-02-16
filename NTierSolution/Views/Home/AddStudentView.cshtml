@@ -1,8 +1,6 @@
 ﻿@using NTierSolution.MVC.UI.Models
 @model StudentsModel
-@using (Html.BeginForm("AddStudent", "Home", FormMethod.Post))
-{
-
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="AddStudent">
     <div class="row">
         <p>Enter details for a new student:</p>
         <div>
@@ -17,4 +15,4 @@
         </div>
     </div>
     <button id="SaveButtonId" type="submit" class="btn btn-success">Add</button>
-}
+</form>
