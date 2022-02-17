@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update" method="post">
+        <form asp-action="SubmitUpdateStudent" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -22,7 +22,7 @@
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-primary" asp-action="UpdateStudent" asp-route-id="student.Id">Update</a>
+                <a class="btn btn-primary" asp-action="SubmitUpdateStudent" asp-route-id="student.Id">Update</a>
             </div>
         </form>
     </div>
