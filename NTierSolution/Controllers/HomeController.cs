@@ -49,29 +49,6 @@ namespace NTierSolution.MVC.UI.Controllers
             }
             return View(modelList);
         }
-
-        //[HttpGet]
-        //public IActionResult ModifyViewData(StudentsModel viewModel)
-        //{
-        //    var students = viewModel.Students;
-        //    _businessLogic.AddStudents(student);
-        //    return RedirectToAction("StudentList");
-        //}
-
-        //public IActionResult StudentList()
-        //{
-        //    var students = _businessLogic.GetStudentsList();
-        //    var model = new StudentsModel();
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //public IActionResult StudentList(UI.Models.StudentsModel viewModel)
-        //{
-        //    IEnumerable<NTierSolution.Entity.Students> students;
-        //    return View(viewModel);
-        //}
-
         
         public IActionResult AddStudent(StudentsModel studentsModel)
         {
@@ -106,23 +83,6 @@ namespace NTierSolution.MVC.UI.Controllers
             //1.Here yoy should find student by ID
             //2.Add all data from student to student model
             //3.Pass to view
-
-            //var model = new StudentsModel()
-            //{
-            //    Id = id
-            //};
-
-            //return View(model);
-
-            //var stud = _businessLogic.GetStudentsById(id);  
-            //var student = new Students
-            //{
-            //    Id = viewModel.Id,
-            //    Name = viewModel.Name,
-            //    Surname = viewModel.Surname
-            //};
-            //_businessLogic.UpdateStudent(student);
-            //return View(viewModel);
         }
 
         [HttpPost]
@@ -136,7 +96,7 @@ namespace NTierSolution.MVC.UI.Controllers
             };
 
             _businessLogic.UpdateStudent(student);
-            return RedirectToPage("StudentList");
+            return Redirect("~/Home/StudentList");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
