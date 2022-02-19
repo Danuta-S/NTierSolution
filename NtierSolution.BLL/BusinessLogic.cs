@@ -34,6 +34,11 @@ namespace NtierSolution.BLL
             return _dataLogic.GetStudents();
         }
 
+        public Students GetStudentById(int id)
+        {
+            return _dataLogic.GetStudentById(id);
+        }
+
         public void AddStudents(Students student)
         {
             _dataLogic.AddStudent(student);

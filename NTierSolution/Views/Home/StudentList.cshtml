@@ -7,7 +7,7 @@
 }
 
 <partial name="AddStudent" model="null"/>
-
+<br />
 <h2>List of the Students</h2>
 
 @if (Model != null)
@@ -28,7 +28,7 @@
                     <td>@student.Name</td>
                     <td>@student.Surname</td>
                     <td>
-                        <a class="btn btn-success" asp-controller="Home" asp-action="UpdateStudent">Update</a>
+                        <a class="btn btn-success" asp-controller="Home" asp-action="UpdateStudent" asp-route-id="@student.Id">Update</a>
                         <a class="btn btn-outline-danger" asp-action="DeleteStudent" asp-route-id="@student.Id" asp-route-viewModel="@student">Delete</a>
                     </td>
                 </tr>

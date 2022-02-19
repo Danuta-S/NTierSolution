@@ -51,9 +51,16 @@ namespace NtierSolution.DLL
 
         public void AddStudent(Students student)
         {
-            var query = $@"Insert Into Students (name, surname)
+            var query = $@"Insert Into Students (Name, Surname)
                         Values('{student.Name}', '{student.Surname}')";
             _dbConnection.Query(query);
+        }
+
+        public Students GetStudentById(int id)
+        {
+            var getStudentById = $"Select * From Students WHERE Id={id}";
+
+            return _dbConnection.Query<Students>(getStudentById).FirstOrDefault();
         }
 
         public void UpdateStudent(Students student)

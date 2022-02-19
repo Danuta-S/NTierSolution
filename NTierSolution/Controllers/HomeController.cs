@@ -92,7 +92,41 @@ namespace NTierSolution.MVC.UI.Controllers
             return RedirectToAction("StudentList");
         }
         
-        public IActionResult UpdateStudent(int id, StudentsModel viewModel)
+        //[HttpGet]
+        public IActionResult UpdateStudent(int id)
+        {
+            var studentList = _businessLogic.GetStudentById(id);
+            var model = new StudentsModel()
+            {
+                Id = id,
+                Name = studentList.Name,
+                Surname = studentList.Surname
+            };
+            return View(model);
+            //1.Here yoy should find student by ID
+            //2.Add all data from student to student model
+            //3.Pass to view
+
+            //var model = new StudentsModel()
+            //{
+            //    Id = id
+            //};
+
+            //return View(model);
+
+            //var stud = _businessLogic.GetStudentsById(id);  
+            //var student = new Students
+            //{
+            //    Id = viewModel.Id,
+            //    Name = viewModel.Name,
+            //    Surname = viewModel.Surname
+            //};
+            //_businessLogic.UpdateStudent(student);
+            //return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SubmitUpdateStudent(StudentsModel viewModel)
         {
             var student = new Students
             {
@@ -100,17 +134,9 @@ namespace NTierSolution.MVC.UI.Controllers
                 Name = viewModel.Name,
                 Surname = viewModel.Surname
             };
-            _businessLogic.UpdateStudent(student);
-            return View(viewModel);
-        }
 
-        public void SubmitUpdateStudent(StudentsModel viewModel)
-        {
-            var student = new Students();
-            student.Id = viewModel.Id;
-            student.Name = viewModel.Name;
-            student.Surname = viewModel.Surname;
             _businessLogic.UpdateStudent(student);
+            return RedirectToPage("StudentList");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
