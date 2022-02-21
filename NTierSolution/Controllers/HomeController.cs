@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NtierSolution.BLL;
 using NTierSolution.Entity;
 using NTierSolution.Models;
@@ -11,11 +12,13 @@ namespace NTierSolution.MVC.UI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly BusinessLogic _businessLogic;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMapper mapper)
         {
             _logger = logger;
             _businessLogic = new BusinessLogic();
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -35,19 +38,21 @@ namespace NTierSolution.MVC.UI.Controllers
         
         public IActionResult StudentList()
         {
-            IList<Students> studentList = new List<Students>();
-            ViewData["StudentList"] = studentList;
+            //IList<Students> studentList = new List<Students>();
+            //ViewData["StudentList"] = studentList;
             var students = _businessLogic.GetStudentsList();
-            var modelList = new List<StudentsModel>();
-            foreach (var student in students)
-            {
-                var modelStudent = new StudentsModel();
-                modelStudent.Id = student.Id;
-                modelStudent.Name = student.Name;
-                modelStudent.Surname = student.Surname;
-                modelList.Add(modelStudent);
-            }
-            return View(modelList);
+            var mapperStudents = _mapper.Map<List<Students>, List<StudentsModel>>(students);
+            //var modelList = new List<StudentsModel>();
+            //foreach (var student in students)
+            //{
+            //    var modelStudent = new StudentsModel();
+            //    modelStudent.Id = student.Id;
+            //    modelStudent.Name = student.Name;
+            //    modelStudent.Surname = student.Surname;
+            //    modelList.Add(modelStudent);
+            //}
+            //return View(modelList);
+            return View(mapperStudents);
         }
         
         public IActionResult AddStudent(StudentsModel studentsModel)

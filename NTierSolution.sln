@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierSolution.MVC.UI", "NTierSolution\NTierSolution.MVC.UI.csproj", "{779E4AE4-93FD-4152-B0EB-8442DF6D34AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTierSolution.MVC.UI", "NTierSolution\NTierSolution.MVC.UI.csproj", "{779E4AE4-93FD-4152-B0EB-8442DF6D34AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierSolution.BLL", "NtierSolution.BLL\NTierSolution.BLL.csproj", "{60AF1888-C947-4420-9731-FD64CFBBA4CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTierSolution.BLL", "NtierSolution.BLL\NTierSolution.BLL.csproj", "{60AF1888-C947-4420-9731-FD64CFBBA4CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierSolution.DLL", "NtierSolution.DLL\NTierSolution.DLL.csproj", "{D974D811-97A5-4DC5-8A7E-69278EFDAC49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTierSolution.DLL", "NtierSolution.DLL\NTierSolution.DLL.csproj", "{D974D811-97A5-4DC5-8A7E-69278EFDAC49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierSolution.Entity", "NTierSolution.Entity\NTierSolution.Entity.csproj", "{B14E953C-EA7A-4092-93C0-9DA6013FEA8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTierSolution.Entity", "NTierSolution.Entity\NTierSolution.Entity.csproj", "{B14E953C-EA7A-4092-93C0-9DA6013FEA8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
